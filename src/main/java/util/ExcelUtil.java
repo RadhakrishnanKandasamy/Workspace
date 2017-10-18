@@ -24,20 +24,23 @@ public class ExcelUtil {
 		try {
 			workbook = new XSSFWorkbook(new File(fileName));
 		} catch (FileNotFoundException f) {
-			System.out.println("FileNotFoundException" + f);
+			System.err.println("FileNotFoundException" + f);
 		} catch (Exception e) {
-			System.out.println("Error while reading the file." + e);
+			System.err.println("Error while reading the file." + e);
 		}
 	}
 
 	/**
-	 * This method is used to get the workbook object
+	 * This method is used to get the workbook object. This will return the workbook
+	 * initialized while creating the util class or it will return null throwing
+	 * error file not initialized.
 	 * 
 	 * @return
 	 */
 	public Workbook getWorkbook() {
 		if (Objects.isNull(workbook)) {
-			System.out.println("Workbook not initialized.");
+			System.err.println("Workbook not initialized.");
+			return null;
 		}
 		return workbook;
 	}
